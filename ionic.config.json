@@ -1,0 +1,7 @@
+{
+  "name": "gi-stat",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
