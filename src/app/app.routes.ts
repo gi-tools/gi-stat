@@ -3,12 +3,17 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/inbox',
+    redirectTo: 'balancing',
     pathMatch: 'full',
   },
   {
-    path: 'folder/:id',
+    path: 'balancing',
     loadComponent: () =>
-      import('./folder/folder.page').then((m) => m.FolderPage),
+      import('./balancing/balancing.page').then((m) => m.BalancingPage),
+  },
+  {
+    path: 'compare',
+    loadComponent: () =>
+      import('./compare/compare.page').then((m) => m.ComparePage),
   },
 ];

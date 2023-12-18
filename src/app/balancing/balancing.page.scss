@@ -1,0 +1,33 @@
+$resultColor: #ccc;
+
+ion-menu-button {
+  color: var(--ion-color-primary);
+}
+
+#result {
+  .miss {
+    font-size: 0.9em;
+  }
+  ion-col {
+    border-style: solid;
+    border-color: $resultColor;
+    border-width: 1px 1px 0 0;
+    &.title {
+      text-align: center;
+      background-color: $resultColor;
+    }
+  }
+  ion-row {
+    &:last-child {
+      ion-col {
+        border-bottom-width: 1px;
+      }
+    }
+    ion-col {
+      &:first-child {
+        border-left-width: 1px;
+      }
+    }
+  }
+}
+

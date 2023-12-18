@@ -1,0 +1,93 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ title }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-list>
+      <ion-item>
+        <ion-input name="base" type="number" label="Base (Atk/Hp/Def/Em)"
+          labelPlacement="stacked"
+          placeholder=""
+          [(ngModel)]="base">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input name="atk" type="number" label="Atk/Hp/Def/Em"
+          labelPlacement="stacked"
+          placeholder=""
+          [(ngModel)]="atk">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input name="cd" type="number" label="Crit Dmg (%)" min="50"
+          labelPlacement="stacked"
+          placeholder=""
+          [(ngModel)]="cd">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input name="cr" type="number" label="Crit Rate (%)" min="5" max="100"
+          labelPlacement="stacked"
+          placeholder=""
+          [(ngModel)]="cr">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-grid id="result">
+      <ion-row>
+        <ion-col class="title">Crit</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Atk/Hp/Def/Em</ion-col>
+        <ion-col>
+          {{atkTotalByCritDmg | number:'1.0-0'}}
+          <ion-text *ngIf="!!atkTotalByCritDmg" class="miss" [color]="getCompareClass(atkTotal, atkTotalByCritDmg)">({{(atkTotal - atkTotalByCritDmg) | number:'1.0-0'}})</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Crit Dmg (%)</ion-col>
+        <ion-col>
+          {{critDmgByAtkTotal | percent:'1.0-2'}}
+          <ion-text *ngIf="!!critDmgByAtkTotal" class="miss" [color]="getCompareClass(critDmg, critDmgByAtkTotal)">({{(critDmg - critDmgByAtkTotal) | percent:'1.0-2'}})</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="title">Avg</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Base</ion-col>
+        <ion-col>{{atkBaseAvg | number:'1.0-0'}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Crit (%)</ion-col>
+        <ion-col>{{critDmgAvg | percent:'1.0-2'}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Atk/Hp/Def/Em</ion-col>
+        <ion-col>
+          {{atkTotalByCritAvg | number:'1.0-0'}}
+          <ion-text *ngIf="!!atkTotalByCritAvg" class="miss" [color]="getCompareClass(atkTotal, atkTotalByCritAvg)">({{(atkTotal - atkTotalByCritAvg) | number:'1.0-0'}})</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Crit Dmg (%)</ion-col>
+        <ion-col>
+          {{critDmgByAtkAvg | percent:'1.0-2'}}
+          <ion-text *ngIf="!!critDmgByAtkAvg" class="miss" [color]="getCompareClass(critDmg, critDmgByAtkAvg)">({{(critDmg - critDmgByAtkAvg) | percent:'1.0-2'}})</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
